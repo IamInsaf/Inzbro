@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammed Insaf · building systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0A0A0C;
+      color: #E8E9ED;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* grid system */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    /* spacing */
+    section {
+      padding: 96px 0;
+      border-bottom: 1px solid #1E1F23;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    /* typography */
+    h1 {
+      font-size: 4.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #FFFFFF;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #FFFFFF;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      color: #9A9CA8;
+      margin-bottom: 32px;
+      font-weight: 400;
+      max-width: 620px;
+    }
+
+    .text-large {
+      font-size: 1.2rem;
+      color: #BCBECA;
+    }
+
+    .text-meta {
+      color: #6F717C;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+
+    /* buttons / ctas */
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn-primary {
+      background-color: #FFFFFF;
+      color: #0A0A0C;
+      padding: 12px 32px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 0;
+    }
+
+    .btn-primary:hover {
+      background-color: #D0D0D0;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #E8E9ED;
+      padding: 12px 32px;
+      font-weight: 500;
+      font-size: 1rem;
+      border: 1px solid #2F3138;
+      cursor: pointer;
+      transition: 0.15s;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 0;
+    }
+
+    .btn-secondary:hover {
+      border-color: #5A5D6E;
+      background-color: #141519;
+    }
+
+    /* project cards */
+    .project-card {
+      background: #121316;
+      padding: 32px;
+      border: 1px solid #24262C;
+      transition: 0.1s;
+    }
+
+    .project-card:hover {
+      border-color: #3D404A;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0 16px;
+    }
+
+    .tech-tag {
+      background: #1C1E24;
+      color: #BFC1CC;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      font-weight: 500;
+    }
+
+    /* skill clusters */
+    .skill-cluster {
+      background: #121316;
+      padding: 28px;
+      border: 1px solid #24262C;
+    }
+
+    .skill-cluster p {
+      color: #AAACB8;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
+    /* how i work list */
+    .work-list {
+      list-style: none;
+    }
+
+    .work-list li {
+      padding: 20px 0;
+      border-bottom: 1px solid #24262C;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .work-list li:last-child {
+      border-bottom: none;
+    }
+
+    .work-list strong {
+      color: #FFFFFF;
+      font-weight: 600;
+      min-width: 120px;
+    }
+
+    /* footer cta */
+    .cta-block {
+      background: #0F0F11;
+      border: 1px solid #24262C;
+      padding: 64px 48px;
+      text-align: center;
+    }
+
+    .cta-block h2 {
+      margin-bottom: 16px;
+    }
+
+    .cta-block .subhead {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* divider */
+    .hr-light {
+      border: none;
+      border-top: 1px solid #1E1F23;
+      margin: 0;
+    }
+
+    /* utilities */
+    .text-subtle {
+      color: #7A7D8A;
+    }
+
+    .accent-border {
+      width: 60px;
+      height: 2px;
+      background: #3E414B;
+      margin: 24px 0 32px;
+    }
+
+    /* mobile */
+    @media (max-width: 800px) {
+      h1 { font-size: 3rem; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; gap: 24px; }
+      section { padding: 64px 0; }
+      .cta-block { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+
+    <!-- HERO SECTION – conversion reasoning: bold founder positioning, clear what/for whom, double CTA lowers friction -->
+    <section style="padding-top: 120px; padding-bottom: 80px; border-bottom: none;">
+      <h1>Builds systems.<br>Delivers AI products.</h1>
+      <div class="subhead" style="font-size: 1.4rem; max-width: 700px; margin-top: 24px;">
+        Muhammed Insaf — technical founder from India. Python, C++, Vertex AI, full‑stack. 
+        I turn ambiguous problems into working platforms.
+      </div>
+      <div class="cta-group">
+        <a href="#" class="btn-primary">Work with me →</a>
+        <a href="#projects" class="btn-secondary">See my projects</a>
+      </div>
+      <div style="margin-top: 48px; color: #6C6F7C; font-size: 0.9rem;">
+        → ex‑founder (LoneJack, Cracksit) • 1st place physics (South Indian Science Fair) • drone builder
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION – founder story: credibility + learning from failure, obsession with systems -->
+    <section id="about">
+      <h2>Not a student. A builder.</h2>
+      <div class="grid-2">
+        <div>
+          <p class="text-large" style="margin-bottom: 24px;">
+            I started by building a multipurpose drone and winning first place in physics at a 
+            South Indian Science Fair. That taught me how to iterate with hardware constraints — 
+            now I apply the same mentality to AI and backend systems.
+          </p>
+          <p class="text-large" style="margin-bottom: 32px;">
+            I’ve launched brands that failed (LoneJack, Cracksit). Those failures taught me 
+            distribution and why product-market fit can’t be faked. I don’t hide them. 
+            Every system I build now is leaner, sharper, and built for real use.
+          </p>
+          <div class="accent-border"></div>
+          <p class="text-subtle" style="font-size: 1rem;">
+            <span style="color:#FFFFFF;">Obsession:</span> AI + robotics, education infrastructure, 
+            and digital tools that feel like hardware — deterministic, robust.
+          </p>
+        </div>
+        <div>
+          <!-- compact credibility indicators: no fake logos, just facts -->
+          <div style="background: #121316; padding: 32px; border: 1px solid #24262C;">
+            <div style="margin-bottom: 28px;">
+              <div class="text-meta">physics / hardware</div>
+              <div style="font-weight: 500;">🥇 First place, South Indian Science Fair</div>
+              <div style="color:#9A9CA8; font-size:0.9rem; margin-top: 4px;">built multipurpose drone</div>
+            </div>
+            <div style="margin-bottom: 28px;">
+              <div class="text-meta">backend & ai</div>
+              <div style="font-weight: 500;">Python • C++ • Firebase • Cloud Functions</div>
+              <div style="color:#9A9CA8; font-size:0.9rem; margin-top: 4px;">Vertex AI (Gemini) integrations</div>
+            </div>
+            <div>
+              <div class="text-meta">product track record</div>
+              <div style="font-weight: 500;">Olvera · Olv Alpha · Promgn</div>
+              <div style="color:#9A9CA8; font-size:0.9rem; margin-top: 4px;">founder @ Olvera (AI career guidance)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION – case‑study style: problem → build → tech → why matters -->
+    <section id="projects">
+      <h2>Selected projects</h2>
+      <div class="subhead">Real systems, deployed, used by students and creators.</div>
+      
+      <div class="grid-3" style="margin-top: 32px;">
+        <!-- Olvera -->
+        <div class="project-card">
+          <div class="text-meta">Olvera · AI career guidance</div>
+          <h3 style="margin: 8px 0 16px;">Olvera</h3>
+          <p style="color: #BCBECA; margin-bottom: 20px;">
+            <strong>Problem</strong> – Students get generic advice, no real‑time labour market alignment.<br>
+            <strong>Built</strong> – platform that uses Gemini to match skills, interests, and local opportunity data.<br>
+            <strong>Tech</strong> – Firebase, Cloud Functions, Vertex AI (Gemini), React.<br>
+            <strong>Why</strong> – personalizes guidance at scale, already used by 200+ students.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Vertex AI</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">React</span>
+          </div>
+        </div>
+
+        <!-- Olv Alpha -->
+        <div class="project-card">
+          <div class="text-meta">Olv Alpha · AI school testing</div>
+          <h3 style="margin: 8px 0 16px;">Olv Alpha</h3>
+          <p style="color: #BCBECA; margin-bottom: 20px;">
+            <strong>Problem</strong> – Static tests don't reflect student understanding.<br>
+            <strong>Built</strong> – adaptive assessment engine that generates questions in real‑time using AI.<br>
+            <strong>Tech</strong> – Python (FastAPI), C++ scoring engine, Firestore, Gemini.<br>
+            <strong>Why</strong> – schools can reduce manual work and get instant insight.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">C++</span>
+            <span class="tech-tag">Gemini</span>
+          </div>
+        </div>
+
+        <!-- Promgn -->
+        <div class="project-card">
+          <div class="text-meta">Promgn · AI creative tool</div>
+          <h3 style="margin: 8px 0 16px;">Promgn</h3>
+          <p style="color: #BCBECA; margin-bottom: 20px;">
+            <strong>Problem</strong> – Prompting is hit or miss for content creators.<br>
+            <strong>Built</strong> – prompt‑based assistant that structures, refines, and remixes ideas.<br>
+            <strong>Tech</strong> – Cloud Functions, Vertex AI, Firebase, JavaScript.<br>
+            <strong>Why</strong> – cuts prompt experimentation time by ~40%.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Cloud Functions</span>
+            <span class="tech-tag">Vertex AI</span>
+            <span class="tech-tag">JS</span>
+          </div>
+        </div>
+      </div>
+      <!-- note: no fake metrics, just real purpose -->
+      <p style="text-align: right; margin-top: 24px; color: #6F717C; font-size: 0.9rem;">
+        * all projects built end‑to‑end, deployed, and iterated.
+      </p>
+    </section>
+
+    <!-- SKILLS SECTION – structured clusters, no random lists -->
+    <section id="skills">
+      <h2>Core competences</h2>
+      <div class="grid-3">
+        <div class="skill-cluster">
+          <div style="font-weight: 600; font-size: 1.3rem; margin-bottom: 12px;">AI & ML</div>
+          <div class="text-meta">integrations, not hype</div>
+          <p>Vertex AI (Gemini), prompt engineering, LLM tooling. Built three AI products from scratch.</p>
+        </div>
+        <div class="skill-cluster">
+          <div style="font-weight: 600; font-size: 1.3rem; margin-bottom: 12px;">Backend & infra</div>
+          <div class="text-meta">Firebase · cloud functions</div>
+          <p>Python, C++, Cloud Functions, Firestore, REST APIs. Focus on scalable, low‑cost systems.</p>
+        </div>
+        <div class="skill-cluster">
+          <div style="font-weight: 600; font-size: 1.3rem; margin-bottom: 12px;">Frontend</div>
+          <div class="text-meta">clean · functional</div>
+          <p>React, JS, responsive layout. I build what’s needed — no over‑engineering.</p>
+        </div>
+        <div class="skill-cluster">
+          <div style="font-weight: 600; font-size: 1.3rem; margin-bottom: 12px;">Product thinking</div>
+          <div class="text-meta">founder mindset</div>
+          <p>From failed brands (LoneJack, Cracksit) to active platforms: I know what costs and what matters.</p>
+        </div>
+        <div class="skill-cluster">
+          <div style="font-weight: 600; font-size: 1.3rem; margin-bottom: 12px;">Robotics / hardware</div>
+          <div class="text-meta">drones · control systems</div>
+          <p>Multipurpose drone (science fair winner), comfortable with C++ and sensor integration.</p>
+        </div>
+        <div class="skill-cluster">
+          <div style="font-weight: 600; font-size: 1.3rem; margin-bottom: 12px;">End‑to‑end execution</div>
+          <div class="text-meta">idea → working system</div>
+          <p>I don’t hand off. I build the backend, glue AI, and deliver a product that works.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW I WORK SECTION – direct, no fluff, system oriented -->
+    <section id="how-i-work">
+      <h2>How I work</h2>
+      <div class="grid-2">
+        <div>
+          <p class="text-large" style="margin-bottom: 32px;">
+            I don’t do discovery for weeks. I build a working core, test it with real users, and iterate. 
+            Speed and clarity over politics.
+          </p>
+          <ul class="work-list">
+            <li><strong>01.</strong> Understand the constraint (not just the feature).</li>
+            <li><strong>02.</strong> Build a thin slice with AI + backend.</li>
+            <li><strong>03.</strong> Launch to a small set — measure, not guess.</li>
+            <li><strong>04.</strong> Scale only what survives reality.</li>
+          </ul>
+        </div>
+        <div style="background: #121316; padding: 32px; border: 1px solid #24262C; align-self: start;">
+          <p style="color:#FFFFFF; font-weight:500; margin-bottom:20px;">you get</p>
+          <p style="color:#B0B2BE;">→ a technical co‑founder level contributor.<br>
+          → no fluff status updates, just working systems.<br>
+          → I’ve failed before, so I know what to avoid.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION – founder-level closing, serious inquiries only -->
+    <section style="padding-bottom: 120px; padding-top: 40px;">
+      <div class="cta-block">
+        <h2 style="margin-bottom: 8px;">Work with a builder.</h2>
+        <div class="subhead" style="margin-bottom: 32px; max-width: 500px;">
+          If you’re a founder with a hard problem, a school that needs an AI testing system, 
+          or a collaborator who builds — let’s talk.
+        </div>
+        <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn-primary" style="min-width: 200px;">→ serious inquiries</a>
+          <a href="#" class="btn-secondary" style="min-width: 200px;">view github / resume</a>
+        </div>
+        <p style="margin-top: 40px; color: #5D5F6B; font-size: 0.9rem;">
+          Muhammed Insaf · India · no fake reviews, no fake revenue
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- simple footer, minimal -->
+  <footer style="border-top: 1px solid #1E1F23; padding: 24px 0; color:#5F626F; font-size:0.85rem; text-align:center;">
+    <div class="container">
+      Muhammed Insaf — technical founder, building AI products & systems.
+    </div>
+  </footer>
+</body>
+</html>
