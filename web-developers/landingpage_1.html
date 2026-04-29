@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Alex Rivera | Full-Stack Web Designer — All Kinds of Websites</title>
+  <!-- Google Fonts & Simple CSS Reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fbfdfc;
+      color: #11181c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* container */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* typography */
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, #0f2c3d, #3b82f6);
+      border-radius: 4px;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #0f2c3d;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #0f2c3d;
+      color: #0f2c3d;
+    }
+    .btn-outline:hover {
+      background: #0f2c3d;
+      color: white;
+      transform: translateY(-3px);
+    }
+    .btn-primary:hover {
+      background: #1e4a6e;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+    }
+
+    /* header & nav */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      background: rgba(251,253,252,0.92);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0f2c3d, #2563eb);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1f2a3a;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* hero section */
+    .hero {
+      padding: 5rem 0 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+    .hero-content {
+      flex: 1.2;
+    }
+    .hero-badge {
+      background: #e6f0fa;
+      color: #1e4a76;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content h1 {
+      font-size: 3.3rem;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .hero-highlight {
+      color: #2563eb;
+      border-bottom: 3px solid #2563eb;
+    }
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #2c3e44;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-stats {
+      flex: 0.8;
+      background: white;
+      padding: 2rem;
+      border-radius: 32px;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .stat-item {
+      margin-bottom: 1.5rem;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f2c3d;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: #4b6a7a;
+    }
+
+    /* filter / categories */
+    .filter-section {
+      margin: 3rem 0 2rem;
+    }
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid #cfdfe8;
+      padding: 0.6rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #0f2c3d;
+      border-color: #0f2c3d;
+      color: white;
+    }
+
+    /* portfolio grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 4rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px -8px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+      border: 1px solid #ecf3f7;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 40px -12px rgba(0,0,0,0.15);
+    }
+    .card-img {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(145deg, #d4e0e8, #c2d2de);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #1f3f54;
+    }
+    .card-content {
+      padding: 1.5rem;
+    }
+    .card-category {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: #3b82f6;
+      margin-bottom: 0.5rem;
+    }
+    .card-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-content p {
+      color: #4b6a7a;
+      margin-bottom: 1.2rem;
+    }
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .tech {
+      background: #eef3f8;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    .card-link {
+      text-decoration: none;
+      font-weight: 600;
+      color: #0f2c3d;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Skills & Services */
+    .skills-section {
+      background: #f1f6f9;
+      border-radius: 48px;
+      padding: 3rem 2rem;
+      margin: 4rem 0;
+    }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .skill-cat {
+      flex: 1;
+      min-width: 200px;
+    }
+    .skill-cat h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #2563eb;
+      padding-left: 1rem;
+    }
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .skill-badge {
+      background: white;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    /* testimonial */
+    .testimonial {
+      background: #0f2c3d;
+      color: white;
+      border-radius: 48px;
+      padding: 3rem 2.5rem;
+      margin: 4rem 0;
+      text-align: center;
+    }
+    .testimonial i {
+      font-size: 3rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+    .testimonial p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+    .client-name {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* contact */
+    .contact-form {
+      background: white;
+      border-radius: 32px;
+      padding: 2.5rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      margin: 2rem 0 4rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #dce5ec;
+      border-radius: 24px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid #e2edf2;
+      margin-top: 2rem;
+      color: #5a7c8c;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+      .hero-desc {
+        max-width: 100%;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">✨ Alex Rivera</div>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Expertise</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-code"></i> Web Design & Development</div>
+        <h1>I build <span class="hero-highlight">every kind</span> of website — from sleek startups to massive eCommerce</h1>
+        <p class="hero-desc">Pixel-perfect, fully responsive, and tailored to your brand. Over 120+ projects delivered worldwide, across all industries.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary"><i class="fas fa-arrow-down"></i> View portfolio</a>
+          <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Start a project</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">120+</div>
+          <div class="stat-label">websites shipped</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">35+</div>
+          <div class="stat-label">happy clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">years experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">responsive design</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Filter Section -->
+  <div class="container" id="work">
+    <div class="filter-section">
+      <h2 class="section-title">Recent creations</h2>
+      <div class="filter-buttons" id="filterButtons">
+        <button class="filter-btn active" data-filter="all">All projects</button>
+        <button class="filter-btn" data-filter="ecommerce">E‑commerce</button>
+        <button class="filter-btn" data-filter="corporate">Corporate</button>
+        <button class="filter-btn" data-filter="portfolio">Portfolio / Creative</button>
+        <button class="filter-btn" data-filter="startup">Startup / SaaS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Portfolio Grid (JavaScript injected) -->
+  <div class="container">
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+  </div>
+
+  <!-- Skills & Services Showcase -->
+  <div class="container" id="skills">
+    <div class="skills-section">
+      <h2 class="section-title" style="margin-bottom: 1.5rem;">Full‑stack design & dev arsenal</h2>
+      <p style="margin-bottom: 2rem; font-size: 1.1rem;">From frontend magic to robust backends — I craft websites that look stunning and perform flawlessly.</p>
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <h4>🎨 Design & UX</h4>
+          <div class="skill-items">
+            <span class="skill-badge">Figma</span><span class="skill-badge">Adobe XD</span><span class="skill-badge">Wireframing</span>
+            <span class="skill-badge">UI Animations</span><span class="skill-badge">Responsive</span><span class="skill-badge">Design Systems</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <h4>💻 Frontend</h4>
+          <div class="skill-items">
+            <span class="skill-badge">React / Next.js</span><span class="skill-badge">Vue.js</span><span class="skill-badge">Tailwind CSS</span>
+            <span class="skill-badge">JavaScript/TS</span><span class="skill-badge">Bootstrap</span><span class="skill-badge">GSAP</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <h4>⚙️ Backend & CMS</h4>
+          <div class="skill-items">
+            <span class="skill-badge">WordPress</span><span class="skill-badge">Shopify</span><span class="skill-badge">Webflow</span>
+            <span class="skill-badge">Node.js</span><span class="skill-badge">PHP/Laravel</span><span class="skill-badge">Strapi</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <h4>🚀 E‑commerce</h4>
+          <div class="skill-items">
+            <span class="skill-badge">WooCommerce</span><span class="skill-badge">Shopify Plus</span><span class="skill-badge">Magento</span>
+            <span class="skill-badge">Custom Carts</span><span class="skill-badge">Stripe API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonial -->
+  <div class="container">
+    <div class="testimonial">
+      <i class="fas fa-quote-right"></i>
+      <p>Alex built our entire marketplace from scratch — from design to deployment. He truly understands how to turn ideas into powerful digital products. One of the most versatile designers I’ve ever worked with.</p>
+      <div class="client-name">— Jamie L., Founder of LUMINA retail</div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="container" id="contact">
+    <h2 class="section-title">Let's create something amazing</h2>
+    <p style="margin: 1rem 0 1.5rem;">Got a project, big or small? I build all kinds of websites — eCommerce, portfolios, dashboards, blogs, funnels, and more.</p>
+    <div class="contact-form">
+      <form id="contactForm">
+        <div class="form-group">
+          <input type="text" placeholder="Your name *" required id="nameInput">
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email address *" required id="emailInput">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Website type (e.g., eCommerce, portfolio, SaaS)">
+        </div>
+        <div class="form-group">
+          <textarea rows="4" placeholder="Tell me about your vision..." required id="messageInput"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="border:none;"><i class="fas fa-paper-plane"></i> Send inquiry</button>
+        <p id="formFeedback" style="margin-top: 1rem; font-size:0.9rem;"></p>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 Alex Rivera — Web designer for all kinds of websites. Based globally, working remotely.</p>
+    <p style="margin-top: 0.6rem;">
+      <i class="fab fa-github"></i>  ·  <i class="fab fa-linkedin"></i>  ·  <i class="fab fa-dribbble"></i>  ·  <i class="fab fa-x-twitter"></i>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // ----- Portfolio Data (all kinds of websites) -----
+  const projectsData = [
+    { id: 1, title: "NeoFashion Store", category: "ecommerce", desc: "High-end fashion eCommerce with AI recommendations & smooth cart.", tech: ["Shopify", "Liquid", "Tailwind"], imgIcon: "🛍️", bgGradient: "linear-gradient(135deg, #f3e7e9, #e3eef9)" },
+    { id: 2, title: "Finwise Bank", category: "corporate", desc: "Modern corporate banking platform with dashboards & security.", tech: ["React", "Node.js", "Framer Motion"], imgIcon: "🏦", bgGradient: "linear-gradient(135deg, #d4e0ec, #c2d6e8)" },
+    { id: 3, title: "Studio Kreative", category: "portfolio", desc: "Portfolio for a design agency, featuring interactive grid & case studies.", tech: ["Next.js", "GSAP", "Three.js"], imgIcon: "🎨", bgGradient: "linear-gradient(135deg, #f9e6cf, #f6e2d5)" },
+    { id: 4, title: "FlowSpark SaaS", category: "startup", desc: "Landing page & dashboard for AI productivity tool, high conversion.", tech: ["Vue", "Tailwind", "Firebase"], imgIcon: "⚡", bgGradient: "linear-gradient(135deg, #e2f0fa, #cee2f1)" },
+    { id: 5, title: "Organic Grocers", category: "ecommerce", desc: "Farm-to-table grocery delivery, custom WooCommerce + subscriptions.", tech: ["WordPress", "WooCommerce", "Stripe"], imgIcon: "🥑", bgGradient: "linear-gradient(135deg, #e4f5e9, #cfecdb)" },
+    { id: 6, title: "Apex Law Group", category: "corporate", desc: "Professional attorney website with client portal & document management.", tech: ["PHP", "Bootstrap", "MySQL"], imgIcon: "⚖️", bgGradient: "linear-gradient(135deg, #e0e7f0, #cfddea)" },
+    { id: 7, title: "PixelCraft Agency", category: "portfolio", desc: "Creative portfolio for a digital studio, full CMS & blog.", tech: ["Webflow", "jQuery", "CSS Grid"], imgIcon: "✨", bgGradient: "linear-gradient(135deg, #f3e8fd, #e8ddfa)" },
+    { id: 8, title: "HealthHub Telemed", category: "startup", desc: "Telemedicine platform with appointment booking, video calls.", tech: ["Next.js", "Express", "Socket.io"], imgIcon: "🏥", bgGradient: "linear-gradient(135deg, #e1f0f0, #cfe6ea)" },
+    { id: 9, title: "Urban Bicycle Club", category: "ecommerce", desc: "Bike shop & repair booking, multi-vendor marketplace features.", tech: ["Magento", "Knockout.js", "Redis"], imgIcon: "🚲", bgGradient: "linear-gradient(135deg, #fde6d8, #f8ddce)" }
+  ];
+
+  const portfolioGrid = document.getElementById('portfolioGrid');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  // render projects based on filter
+  function renderProjects(filterValue) {
+    let filtered = projectsData;
+    if (filterValue !== 'all') {
+      filtered = projectsData.filter(proj => proj.category === filterValue);
+    }
+    if (filtered.length === 0) {
+      portfolioGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">No projects in this category yet, but I build them all — contact me for your custom type!</div>`;
+      return;
+    }
+    const html = filtered.map(proj => `
+      <div class="project-card" data-category="${proj.category}">
+        <div class="card-img" style="background: ${proj.bgGradient}; font-size: 4rem;">
+          ${proj.imgIcon}
+        </div>
+        <div class="card-content">
+          <div class="card-category">${proj.category === 'ecommerce' ? '🛒 E-COMMERCE' : proj.category === 'corporate' ? '🏢 CORPORATE' : proj.category === 'portfolio' ? '🎨 PORTFOLIO' : '🚀 STARTUP/SaaS'}</div>
+          <h3>${proj.title}</h3>
+          <p>${proj.desc}</p>
+          <div class="tech-stack">
+            ${proj.tech.map(t => `<span class="tech">${t}</span>`).join('')}
+          </div>
+          <a href="#" class="card-link">Live preview →</a>
+        </div>
+      </div>
+    `).join('');
+    portfolioGrid.innerHTML = html;
+  }
+
+  // active filter and event listeners
+  let currentFilter = 'all';
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const filterValue = btn.getAttribute('data-filter');
+      currentFilter = filterValue;
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProjects(filterValue);
+    });
+  });
+
+  // initial render
+  renderProjects('all');
+
+  // contact form handling + elegant success message
+  const contactForm = document.getElementById('contactForm');
+  const feedbackPara = document.getElementById('formFeedback');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('nameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const message = document.getElementById('messageInput').value.trim();
+    if (!name || !email || !message) {
+      feedbackPara.style.color = "#c2410c";
+      feedbackPara.innerHTML = "⚠️ Please fill in all required fields (name, email, message).";
+      return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      feedbackPara.style.color = "#c2410c";
+      feedbackPara.innerHTML = "📧 Please enter a valid email address.";
+      return;
+    }
+    // Simulate sending
+    feedbackPara.style.color = "#0f5c3b";
+    feedbackPara.innerHTML = `🎉 Thanks ${name}! I'll get back to you within 24h to build your ${message.substring(0,30)}... ✨`;
+    contactForm.reset();
+    setTimeout(() => {
+      feedbackPara.innerHTML = "";
+    }, 5000);
+  });
+
+  // smooth navigation for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === "#" || href === "") return;
+      const targetElem = document.querySelector(href);
+      if (targetElem) {
+        e.preventDefault();
+        targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
